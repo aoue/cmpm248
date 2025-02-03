@@ -1,7 +1,7 @@
 VAR crow_suspicion_level = 0
 VAR crow_flirt_level = 0
 
-
+->start_crow_convo
 ==start_crow_convo==
 You open the door to face the body of a well-built man dressed in a black suit with leafy grapevine patterns. The body leans against the doorframe, arms loosely crossed. You look up to see the body has the head of a crow, who can surprisingly be described as handsome. His stunning black feathers shone iridescently in the light. His shining dark eyes gazed down at you. You can almost see a smirking expression.
 
@@ -57,7 +57,7 @@ You open the door to face the body of a well-built man dressed in a black suit w
         ~ crow_suspicion_level = crow_suspicion_level + 1
     * (buttons){condition}[Broken] You explain. "The air fryer was discovered to be broken this morning. Management is trying to find the cause."
         "My goodness," he exclaimed. "That's terrible news! It was in pristine condition last night. The buttons on it were gorgeous. I hope it gets fixed soon."
-    * {buttons} [Buttons] "How did you use the buttons?"
+    * {buttons}[Buttons] "How did you use the buttons?"
         "I used the button to set the temperature for my food. One satisfying click did the job." He nods vigorously. "I will say that the click of the button is very satisfying. I wonder how they made it that way."
         ~ crow_suspicion_level = crow_suspicion_level + 1
     * [This morning] "Have you gone to the kitchen this morning?"
@@ -65,23 +65,29 @@ You open the door to face the body of a well-built man dressed in a black suit w
             ~ crow_flirt_level = crow_flirt_level + 1
         ** [Accept] You smile and nod. "Yes, I can be your plus one. First, help me with this problem."
         ** [Reject] You flat out reject him. "No, I'm very busy. Please answer my questions."
+    * {buttons}[End interrogation] ->crow_end_convo
     - -> opts
 
-
-// idk how to connect this to the stuff above lol
+// this tunnels out of the crow conversation storylet
 ==crow_end_convo==
 You've asked all you needed from the crow. You say your farewell and walk away from the door.
 Your boss rings you.
 "What do you make of that crow guy?"
-- {crow_suspicion_level < 3 && crow_flirt_level < 2} You reply, "He has been very cooperative. I don't think he's supsicious."
-    The boss 'hmphs'. "Keep an eye on him. I don't trust crows."
-- {crow_suspicion_level < 3 && crow_flirt_level >= 2} You reply, "He has been cooperative. He's very charming as well. I think we got along very well."
-    The boss 'hmphs'. "He could be stringing you along. Don't fall for his charms."
-- {crow_suspicion_level == 3 && crow_flirt_level < 2} You reply, "He's raised a few red flags. He might be the culprit. We'll come back to it later."
-    The boss chuckles. "He thinks he's clever. Just wait until we catch him."
-- {crow_suspicion_level == 3 && crow_flirt_level >= 2} You reply, "He's raised a few red flags. He might be culprit. He keeps trying to distract me with his flirtatious responses."
-    The boss chuckles. "He thinks he's clever. I'm proud of you for not falling for his charms."
--> END
+{
+    - crow_suspicion_level < 3 && crow_flirt_level < 2:
+        You reply, "He has been very cooperative. I don't think he's supsicious."
+        The boss 'hmphs'. "Keep an eye on him. I don't trust crows."
+    - crow_suspicion_level < 3 && crow_flirt_level >= 2:
+        You reply, "He has been cooperative. He's very charming as well. I think we got along very well."
+        The boss 'hmphs'. "He could be stringing you along. Don't fall for his charms."
+    - crow_suspicion_level >= 3 && crow_flirt_level < 2:
+        You reply, "He's raised a few red flags. He might be the culprit. We'll come back to it later."
+        The boss chuckles. "He thinks he's clever. Just wait until we catch him."
+    - crow_suspicion_level >= 3 && crow_flirt_level >= 2:
+        You reply, "He's raised a few red flags. He might be culprit. He keeps trying to distract me with his flirtatious responses."
+        The boss chuckles. "He thinks he's clever. I'm proud of you for not falling for his charms."
+}       
+->->
 
 //call this if accusing the crow
 ==accuse_crow==
