@@ -8,7 +8,7 @@ VAR knows_travels = 0
 LIST susMarkers = POLICEMANS_KNOCK, RIDDLER, REVOLUTIONARY, INSURANCE_LIAR, QUITTER, INFAMOUS, CONFESSION
 //~ susMarkers = (POLICEMANS_KNOCK, RIDDLER, REVOLUTIONARY, INSURANCE_LIAR, QUITTER, INFAMOUS, CONFESSION)
 
--> at_door -> DONE
+
 === at_door ===
 
     You drudge heavily to the door of the next room, 'Room ZZZ.'

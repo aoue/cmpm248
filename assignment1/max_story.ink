@@ -1,7 +1,7 @@
 VAR max_suspicion = 0
 VAR visited_silk = false
 VAR visited_persist = false
-->start_max
+
 == start_max ==
 
 Boss: You should go investigate Maximillian Von Profitstein LLC, he is this sly businessman that always stays in my hotel when he is on a businesstrip. I swear I heard noises in the kitchen last night and I swear I saw him running away in a chef hat? Please check on him.

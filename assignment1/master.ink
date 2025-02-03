@@ -1,5 +1,5 @@
-INCLUDE crow_storylet.ink
 INCLUDE max_story.ink
+INCLUDE crow_storylet.ink
 INCLUDE mister_s.ink
 
 -> very_beginning
@@ -12,7 +12,7 @@ initial scene.
     -> start_crow_convo
 
 * [Visit Max.]
-    -> start
+    -> start_max
     
 * [Visit Room 777]
     -> at_door
