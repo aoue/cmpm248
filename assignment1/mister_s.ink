@@ -1,7 +1,7 @@
 
 
 /* State Variables */
-VAR suspicion = 0  // A variable counting overall suspicion. Needs to be above a certain number to allow the player to accuse this character at the end of the story.
+VAR mr_s_suspicion = 0  // A variable counting overall suspicion. Needs to be above a certain number to allow the player to accuse this character at the end of the story.
 VAR knows_insurance = 0
 VAR knows_travels = 0
 
@@ -9,7 +9,7 @@ LIST susMarkers = POLICEMANS_KNOCK, RIDDLER, REVOLUTIONARY, INSURANCE_LIAR, QUIT
 //~ susMarkers = (POLICEMANS_KNOCK, RIDDLER, REVOLUTIONARY, INSURANCE_LIAR, QUITTER, INFAMOUS, CONFESSION)
 
 
-=== at_door ===
+=== start_mr_s ===
 
     You drudge heavily to the door of the next room, 'Room ZZZ.'
     It used to say '777', but someone's written on the plaque with a faded magic marker.
@@ -48,7 +48,7 @@ Continue until the player ends it or there's nothing else to say.
 */
 
 = loop
-    (Suspicion {suspicion}/5)
+    // (Suspicion {suspicion}/5)
     // Tunnel: the character's reaction to what you just said.
     -> sleepwalker_reactions ->
     // Tunnel: If no character reaction, then the character tries to say something for themself
@@ -100,23 +100,25 @@ Continue until the player ends it or there's nothing else to say.
     * (airfryer) {limitToThree()} [Airfryers.]
         YOU: "Ever use an airfryer, MR S?"
         MR S: "From time to time, I've have had the pleasure."
-        He's darn right it's a pleasure."
+        He's right it's a pleasure.
     
     * (worst_thing_ever) {airfryer} {limitToThree()} [The crime.]
         YOU: "What's the worst thing you've ever done, MR S?"
-        MR S: "What a question."
-        MR S: "That I've waited for far too long, I suppose."
+        MR S: "... What a question."
+        MR S: "... It's that I've waited far too long, I suppose."
+        MR S: "Not just here and now, but throughout my entire life. I've always waited for the perfect moment."
+        MR S: "But do you know? That moment never comes."
         YOU: "Mhm."
-        YOU: "Let me rephrase."
+        YOU: "That's not really what I meant, MR S."
+        MR S: "You're the one who asked."
     
-    * (airfryer_brutality) {worst_thing_ever} {limitToThree()} [The crime.]
+    * (airfryer_brutality) {worst_thing_ever} {limitToThree()} [The crime, again.]
         YOU: "What's the worst thing you've ever done, MR S... to an airfryer?"
-        MR S: "But what on earth do you mean?"
+        MR S: "But, what on earth do you mean?"
         YOU: "What? You think airfryers don't have rights?"
         YOU: "That they don't deserve respect?"
-        MR S: "No! Certainly not."
-        MR S: "Every thing is a precious thing, as far as I'm concerned. Ask anyone!"
-        YOU: "Hmm..."
+        MR S: "But of course they do!"
+        MR S: "Each made thing is a precious thing, as far as I'm concerned. Ask anyone!"
     
     - -> loop
 
@@ -145,7 +147,7 @@ Continue until the player ends it or there's nothing else to say.
     * (sleep_mask_3) {came_from(-> sleep_mask_2)} [Won't you take it off?]
         YOU: "Won't you take it off?"
         MR S: "There would hardly be any point."
-        MR S: "You see, my eyes are closed beneath it."
+        MR S: "You see, my eyes are closed."
     * {came_from(-> sleep_mask_3)} [I want to see your face.]
         YOU: "I want to see your face."
         MR S: "That's..."
@@ -219,7 +221,7 @@ Continue until the player ends it or there's nothing else to say.
         YOU: "It's a nice room."
         MR S: "..."
         His silence indicates that he does not think it is, in fact, a nice room.
-        MR S: "Ahem. Yes, it's enough for me, at any rate."
+        MR S: "Ahem, yes. It's enough for me, at any rate."
     * (revolutionary){came_from(-> shabby_room_2)} [...Much nicer than my place.]
         YOU: "...Much nicer than my place."
         MR S: "Oh, I'm sorry."
@@ -246,9 +248,10 @@ Continue until the player ends it or there's nothing else to say.
     * {came_from(-> airfryer_2)} [As long as that something's an airfryer.]
         YOU: "As long as that something's an airfryer."
         MR S: "I say, you really do like airfryers, don't you?"
-        YOU: "Me? Not a chance."
+        YOU: "Not me."
+        You shake your head seriously.
         MR S: "Oh, my mistake. Of course not."
-        MR S: "You already said—You love them."
+        MR S: "—You love them."
         YOU: "Exactly right."
         
     * (airfryer_bru_2) {came_from(-> airfryer_brutality)} [Just stare at him.]
@@ -264,7 +267,7 @@ Continue until the player ends it or there's nothing else to say.
         YOU: "It was you, wasn't it!"
         MR S: "No! I swear."
         MR S: "And I've been here in my room for days, trying in vain to sleep!"
-        MR S: "I am very ill!"
+        MR S: "I have been quite ill and only recently feeling better!"
         YOU: "Do you expect me to believe that?"
         MR S: "It is the truth!"
         MR S: "But, no. Perhaps I do not."
@@ -292,15 +295,16 @@ Continue until the player ends it or there's nothing else to say.
 = i_should_go
     * [I should go.]
         YOU: "I should go."
-        MR S: "Of course. Thank you for your time."
-        MR S: "And thank you for helping me to take my mind away from everything for a while."
-        { - suspicion >= 3:
+        MR S: "Of course."
+        MR S: "Thank you for helping me to take my mind away from everything for a while."
+        { - mr_s_suspicion == 5:
             YOU: "No, it's been my pleasure. I'm sure of it."
             YOU: "I'll be seeing you."
-            MR S: "Oh, surely not?"
-            YOU: "I wonder."
+            MR S: "Oh, surely not."
+            YOU: "Surely, surely, surely."
+            You leave the puzzled MR S behind and close the door after yourself.
         - else:
-            YOU: "Thaks for your time."
+            YOU: "Thanks for your time."
             MR S: "As I said, an absolute pleasure."
         }
 
@@ -314,7 +318,7 @@ Continue until the player ends it or there's nothing else to say.
         You decide to call the boss.
         YOU: "Hey boss."
         BOSS: "Have you found them yet? The criminal?"
-        { - suspicion >= 3:
+        { - mr_s_suspicion >= 3:
             YOU: "Well, maybe I have boss."
             YOU: "This guy was one sick freak, let me tell you."
             YOU: "Made my skin crawl."
@@ -335,6 +339,8 @@ Continue until the player ends it or there's nothing else to say.
     * [Question the next guest.]
         // link to next character
         // -> sleepwalker_jaccuse
+        ->->
+        
 
     - -> DONE
 
@@ -352,20 +358,22 @@ YOU: "It was that shifty MR S."
 = accusations
 * { susMarkers ? POLICEMANS_KNOCK} [The policeman's knock!]
     YOU: "He said I had a policeman's knock, didn't he?! Well, I say:"
-    YOU: "How would he know that unless he was a criminal, huh?"
+    YOU: "How would he know that unless he was a criminal, eh?"
+    YOU: "Must have spent a lot of time getting chased around to get that familiar!"
     BOSS: "Yes, of course!"
     -> accusations
 
 * { susMarkers ? RIDDLER} [A riddler!]
     YOU: "He spoke in darn riddles!"
     YOU: "He was always trying to confuse me with his words and such!"
-    BOSS: "Damning!"
+    BOSS: "Positively damning!"
     -> accusations
 
 * { susMarkers ? REVOLUTIONARY} [A revolutionary!]
     YOU: "He was some kind of dangerous revolutionary type of guy!"
-    YOU: "Saying stuff about... well, it was all sorts of revolutionary!"
-    BOSS: "Well I never!"
+    YOU: "Saying stuff about... well, it was all sorts of revolutionary mumbo-jumbo!"
+    YOU: "None of it ever makes any sense to anyone!"
+    BOSS: "Hear, hear!"
     -> accusations
 
 * { susMarkers ? INSURANCE_LIAR} [An insurance salesman!]
@@ -386,10 +394,10 @@ YOU: "It was that shifty MR S."
     BOSS: "Disgusting!"
     -> accusations
 
-* { susMarkers ? CONFESSION} [He confessed to it!]
+* { susMarkers ? CONFESSION} [He confessed!]
     YOU: "He confessed to it! Right in front of me!"
-    YOU: "He was denying it, but he would, wouldn't he? Guilty as all hell, I know it!"
-    BOSS: "How could he!"
+    YOU: "He was denying it, but he would, wouldn't he? Guilty as all hell, I just know it!"
+    BOSS: "Preposterous!"
     -> accusations
 
 + [He was just an all-round bad guy!]
@@ -398,29 +406,30 @@ YOU: "He was just an all-round bad guy!"
 YOU: "Can we get him, boss?"
 BOSS: "Of course. There's no other choice."
 BOSS: "It's our duty to get antisocial types like him off the streets before they do any more harm"
-BOSS: "—or break something more valuable."
+BOSS: "—or break anything more valuable than the simple airfryer."
 YOU: "Quite right, boss."
 
-MR S ended up paying a two hundred dollar fine for property damage. What's more, his security deposit on the hotel room was confiscated.
-The next day, he shot at a visiting politician from the roof of the hotel and missed. He received given the death penalty and was finally executed sixteen months later.
+MR S ended up paying a two hundred dollar fine for property damage. His security deposit on the hotel room was confiscated.
+The next day, he shot at a visiting public official from the roof of the hotel with an antique rifle, and missed him completely. He received the death penalty and was finally executed sixteen months later.
+He never touched another airfryer.
 
 -> END
 
 == function sus()
-    ~ suspicion += 1
+    ~ mr_s_suspicion += 1
     { 
-    - suspicion == 1:
+    - mr_s_suspicion == 1:
         ("A somewhat strange man."
-    - suspicion == 2:
+    - mr_s_suspicion == 2:
         ("That's a bit suspicious, isn't it?"
-    - suspicion == 3:
+    - mr_s_suspicion == 3:
         ("Why does he say it like that?"
-    - suspicion == 4:
+    - mr_s_suspicion == 4:
         ("I wouldn't trust him as far as I could throw him."
-    - suspicion == 5:
+    - mr_s_suspicion == 5:
         ("This is the kind of sick man who'd break an airfryer."
     - else:
-        ("What's really suspicious is how you managed to see this."
+        ("Unconscionably suspicious!"
     }
     <> You think to yourself.)
 
