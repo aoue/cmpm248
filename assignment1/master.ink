@@ -65,7 +65,7 @@ VAR num_of_choices = 0
         **{mr_s_suspicion >= 3} [MR S.]
             -> sleepwalker_jaccuse
         
-        **{crow_suspicion_level > 0} [The Crow.]
+        **{crow_suspicion_level >= 3} [The Crow.]
             -> accuse_crow
         
         **[The Boss.]
