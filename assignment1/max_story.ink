@@ -4,7 +4,7 @@ VAR visited_persist = false
 
 == start_max ==
 
-Boss: You should go investigate Maximillian Von Profitstein LLC, he is this sly businessman that always stays in my hotel when he is on a businesstrip. I swear I heard noises in the kitchen last night and I swear I saw him running away in a chef hat? Please check on him.
+ The boss told me I should go investigate Maximillian Von Profitstein LLC, he is this sly businessman that always stays in my hotel when he is on a businesstrip. I swear I heard noises in the kitchen last night and I swear I saw him running away in a chef hat? Please check on him.
 -> talk_to_max
 
 === talk_to_max ===
@@ -289,14 +289,29 @@ You take the money. Surely, Max did not commit the crime.
     -> leave_room
 
 === leave_room ===
-*You sigh, leaving Maximillianin in his room.*  
+You sigh, leaving Maximillianin in his room.
 
 Your boss isn't going to be happy. But at least you got answers.  
 ...Or at least whatever that was.  
 
--> DONE
+*[Check on next guest]
+->->
+
 == accuse_max ==
-->DONE
+You look towards Max in all his glory and you slowly point to him.
+
+"It was Max. He broke the air fryer last night. In typical businessman fashion he tore down our beloved fryer for his own benefit. He has no regard for the peace we show here at the hotel. ALl he cares about is his mysterious businesses and Jameson."
+
+Max: You just say this because you wish you had the same success I do. You're just a cog in the machine of this hotel. I'm glad I broke your fryer, at least it will give your life meaning to fix it. 
+
+"Get him out of my sight."
+
+Max is carried away by security.
+
+Boss: Thank you for your hard work, I'm glad we could get that shady businessman off the street. Now if you'll hurry up, all of his room service dishes are still outside his room. 
+
+Maximillian went on to pay his bail for the air fryer and began a new scallop harvesting business in Belgium. One day, one of his employees brought up the fact that she had bought her kids an air fryer for Christmas. This event sent Maximillian into a state of panic where he up and left his entire business without warning. Nowadays it is said he lives life as a Monk and has abandoned all substances and material goods. However, a new company suddenly began called SockSync, with an anonymous donor as the main contributer to the startup. Some theorize that Max's reign over the business world is yet to conclude...
+->END
 
 
 
