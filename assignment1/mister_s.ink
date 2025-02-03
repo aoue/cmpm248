@@ -1,4 +1,5 @@
 
+
 /* State Variables */
 VAR suspicion = 0  // A variable counting overall suspicion. Needs to be above a certain number to allow the player to accuse this character at the end of the story.
 VAR knows_insurance = 0
@@ -332,8 +333,8 @@ Continue until the player ends it or there's nothing else to say.
             -> sleepwalker_boss_call
         }
     * [Question the next guest.]
-        // link to other character
-        -> sleepwalker_jaccuse
+        // link to next character
+        // -> sleepwalker_jaccuse
 
     - -> DONE
 
