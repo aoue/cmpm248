@@ -1,7 +1,6 @@
 VAR crow_suspicion_level = 0
 VAR crow_flirt_level = 0
 
-->start_crow_convo
 ==start_crow_convo==
 You open the door to face the body of a well-built man dressed in a black suit with leafy grapevine patterns. The body leans against the doorframe, arms loosely crossed. You look up to see the body has the head of a crow, who can surprisingly be described as handsome. His stunning black feathers shone iridescently in the light. His shining dark eyes gazed down at you. You can almost see a smirking expression.
 
