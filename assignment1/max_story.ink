@@ -30,7 +30,7 @@ His breath smells like Jameson and Crest3D white toothpaste. He begins to pull o
     -> silk_detour
 
 === open_approach ===
-"Thank you Mr. Profitstein, I am actually here to investi- "
+You: "Thank you Mr. Profitstein, I am actually here to investi- "
 
 Max: Ah ah ah. Let me stop you there. It is Dr. Maximillian Von Profitstein LLC, I didnt go through 2 years of University of Phoenix's online PhD program to be called "Mister" my whole life.
 
@@ -41,7 +41,7 @@ Max: Oh come on I'm just joking with you please call me Max!
 
 ==ask_about_fryer==
 
-"I am actually here to investigate our air fryer being destroyed, you wouldn't know anything about this would you?
+You:"I am actually here to investigate our air fryer being destroyed, you wouldn't know anything about this would you?
 
 Max: "An air fyer? I have never heard of such a thing"
 
@@ -74,7 +74,7 @@ You pause for a moment. Burlesque up the street? The only thing on this road is 
  ->leaving_soon
  
  ==leaving_soon==
- "I thought you were staying for the weekend"
+ You: "I thought you were staying for the weekend"
  
  Max: That's really none of your business, but if you must know yes something came up last night and I had to change my plans. The wife called me up apparently she left the dishwasher open before her girl's trip to Costa Rica.
  
@@ -88,7 +88,7 @@ You pause for a moment. Burlesque up the street? The only thing on this road is 
  ->ask_about_fryer
  
  ==burlesque ==
- "There is no burlesque up the street. There's just a crummy Burger King that put onions on my whopper when I specifically told them NO ONIONS. Anyways, I'm not buying it.
+ You: "There is no burlesque up the street. There's just a crummy Burger King that put onions on my whopper when I specifically told them NO ONIONS. Anyways, I'm not buying it.
  
  +"I am willing to bet you messed with the air fryer!"
  ->jump_through_window
@@ -183,7 +183,7 @@ Max: *Sigh.* Fine. You got me. I used the air fryer and it slightly overheated.
 
 Max: In my defense, how was I supposed to know scallops were never meant to be superheated at 400°F for twenty minutes. They were frozen solid!
 
-"So you're admitting to the crime?
+You: "So you're admitting to the crime?
 
 Max: Absolutely not! I swear it was still making noises when I left! It was working! Plus the deal still went through! I mean, sure, the air fryer overheated. Sure, I had to flee the hotel wearing a chef’s hat as a disguise. But the scallops were delivered, and that’s what matters. Your air fryer was not broken by me!
 ->wrap_up
@@ -211,7 +211,7 @@ Max: I vanished into the night, leaving my business partner alone at the steakho
 ==max_on_the_run==
 Max: I sold them to buy a plane ticket out of here, hence why I am all packed up. 
 
-"Why not just tell Mr. Stocksworth what happened.
+You: "Why not just tell Mr. Stocksworth what happened.
 
 Max: Do you have any idea what it’s like to live in constant fear of a seafood-obsessed billionaire hunting you down? Mr. Stocksworth doesn't like to have his time wasted, and he wants to see me punished for standing him up.
 
@@ -235,7 +235,7 @@ Max: Well, I would assume you know the answer is yes. You do work at this hotel.
 ==respect==
 Max: Oh yeah why is that?
 
-"Out sourcing is the future of business. Why pay employees more when you can get it for cheaper. I am actually starting my own business to get out of this stupid job. I mean my boss has me running around looking for the culprit who broke our air fryer!"
+You: "Out sourcing is the future of business. Why pay employees more when you can get it for cheaper. I am actually starting my own business to get out of this stupid job. I mean my boss has me running around looking for the culprit who broke our air fryer!"
 You notice Max has a bead of sweat running down his forehead. Or maybe that is some of the cheap product he uses to keep his hair so slicked back.
 
 + "Actually, speaking of that air fryer"
@@ -245,17 +245,17 @@ You notice Max has a bead of sweat running down his forehead. Or maybe that is s
 ->business_idea
 
 ==business_idea ==
-"I plan on having a business called "SockSync™ – The AI-Powered Sock Matching Subscription Service"
+You: "I plan on having a business called "SockSync™ – The AI-Powered Sock Matching Subscription Service"
 
 Max takes a sigh of relief as you explain your idea.
 
-"You see, Matching socks is a modern nightmare. Laundry day leaves millions of people confused, disoriented, and emotionally drained. Some socks go missing. Others mysteriously shrink. Society has accepted this as just the way things are."
+You: "You see, Matching socks is a modern nightmare. Laundry day leaves millions of people confused, disoriented, and emotionally drained. Some socks go missing. Others mysteriously shrink. Society has accepted this as just the way things are."
 
-"SockSync™ is a state-of-the-art, AI-driven sock matching subscription service that analyzes, categorizes, and reunites socks using machine learning, blockchain, and a hint of black magic."
+You: "SockSync™ is a state-of-the-art, AI-driven sock matching subscription service that analyzes, categorizes, and reunites socks using machine learning, blockchain, and a hint of black magic."
 
 Max: Um, how would this technology exactly work?
 
-"Step 1: You ship ALL your socks to our headquarters in Des Moines, Iowa. Location chosen for tax reasons.
+You: "Step 1: You ship ALL your socks to our headquarters in Des Moines, Iowa. Location chosen for tax reasons.
 Step 2: Our proprietary AI "SockGPT" scans each sock’s texture, fiber density, and "vibe" to determine optimal pair compatibility.
 Step 3: Our team of "Certified Sock Technicians™" (CSTs) painstakingly matches, labels, and digitally registers each sock on the Ethereum blockchain to ensure permanent pairing records.
 Step 4: Socks are shipped back bi-annually, complete with a SockDNA™ report that includes:
@@ -300,11 +300,11 @@ Your boss isn't going to be happy. But at least you got answers.
 == accuse_max ==
 You look towards Max in all his glory and you slowly point to him.
 
-"It was Max. He broke the air fryer last night. In typical businessman fashion he tore down our beloved fryer for his own benefit. He has no regard for the peace we show here at the hotel. ALl he cares about is his mysterious businesses and Jameson."
+You: "It was Max. He broke the air fryer last night. In typical businessman fashion he tore down our beloved fryer for his own benefit. He has no regard for the peace we show here at the hotel. ALl he cares about is his mysterious businesses and Jameson."
 
 Max: You just say this because you wish you had the same success I do. You're just a cog in the machine of this hotel. I'm glad I broke your fryer, at least it will give your life meaning to fix it. 
 
-"Get him out of my sight."
+You: "Get him out of my sight."
 
 Max is carried away by security.
 
