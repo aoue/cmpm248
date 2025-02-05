@@ -13,7 +13,7 @@ You approach the businessman's room, it is a family suite on the fourth floor. Y
  
  == first_interaction == 
 
-The door opens. Before you stands a 5'10 man with a puzzling complextion. He is wearing the hotel's custom made "premium package" bathrob, stiched with the worlds finest yellow and purple linen from Bruges, Belgium. Looking at his face you cannot tell if he is 20 or 25, and with the pertruding gut and overfilled muscles it seems to be no secret he is on a steriod cycle. His bare, red feet stand in front of you, it looks like he has done a lot of running recently. He grins back at you with a pearly white smile. He parts his thinning, wet hair in front of you as he begins to speak.
+The door opens. Before you stands a 5'10 man with a puzzling complextion. He is wearing the hotel's custom made "premium package" bathrob, stiched with the worlds finest yellow and purple linen from Bruges, Belgium. His face is that of a man somewhere between 20 and 45, preserved by wealth, stress, and an unholy amount of protein powder. His biceps twitch involuntarily, the side effect of a cocktail of steroids and desperation. His bare, red feet stand in front of you, it looks like he has done a lot of running recently. He grins back at you with a pearly white smile. He parts his thinning, wet hair in front of you as he begins to speak.
 
 Max: I could've sworn I stopped myself from ordering room service after drinking last night? Oh well, what do I owe you?
 
