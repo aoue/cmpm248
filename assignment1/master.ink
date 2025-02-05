@@ -22,28 +22,29 @@ VAR num_of_choices = 0
     * [Are you sure you don't just want me to fix it, boss?]
     YOU: "Are you sure you don't just want me to fix it, boss?"
     YOU: "Normally, that's what us maintenance folks do."
-    YOU: "We fix stuff. We don't go hunting nobody."
+    YOU: "We just fix stuff. We don't go hunting nobody."
     -
-    BOSS: "That's what you normally do, is it?"
-    BOSS: "Well, this isn't a normal situation!"
-    BOSS: "We come down hard on this, right now, or people will think they can do whatever the hell they want to my airfryers."
-    BOSS: "And, by extension, this whole property."
-    BOSS: "Unacceptable. You understand?"
+    BOSS: "Normally, that's true."
+    BOSS: "However! This is not a normal situation!"
+    BOSS: "We have to come down hard on this—right now—or people will think they can do whatever the hell they want to my airfryers."
+    BOSS: "And, by extension, the whole property."
+    BOSS: "Chaos is, after all, a ladder. The first step is just as serious as the last."
+    BOSS: "In other words, a single broken airfryer is anarchy."
     
     * [I get you.]
     YOU: "I get you."
     -
-    BOSS: "Look, think about it this way: You're still fixing something."
+    BOSS: "You're maintenance. Fix this."
     BOSS: "Find them for me."
     He hands you a list.
-    BOSS: "Here are the top suspects. Give them each a talking to and let me know who's our man."
-    
+    BOSS: "The top suspects, all who happen to be guests under our roof right now."
+    BOSS: "Sound them out and let me know who's our man."
     
     -> visit_choice
     
     = visit_choice
     
-    * [Suspect no. 1, MR S. in Room 777]
+    * [Suspect no. 1, MR S.]
         ~num_of_choices += 1
         -> start_mr_s ->
     
@@ -82,16 +83,18 @@ He's gonna fire you, though.
 == accuse_boss
     YOU: "It was you boss! You're the one who broke the airfryer."
     BOSS: "Are you an idiot?"
-    * YOU: "No?"
+    * [Wait, what?]
+        YOU: "Wait, what?"
     - 
     He shakes his head.
     BOSS: "You are."
     BOSS: "I know I didn't break it."
-    BOSS: "Which means you're wrong. Which means you are."
-    YOU: "Oh. Well, sorry boss."
+    BOSS: "Which means you're wrong. And I know you're wrong."
+    YOU: "Oh. Well, sorry about that, boss."
     BOSS: "It's fine, I've already forgiven you."
     BOSS: "Also, you're fired."
-    * No way!
+    * [No way!]
+        YOU: "No way!"
     -
     You're escorted from the building by security.
     It's not even lunchtime yet. It feels like it's going to be a very, very long day.

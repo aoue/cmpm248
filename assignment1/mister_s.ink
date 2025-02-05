@@ -10,7 +10,6 @@ LIST susMarkers = POLICEMANS_KNOCK, RIDDLER, REVOLUTIONARY, INSURANCE_LIAR, QUIT
 
 
 === start_mr_s ===
-
     You drudge heavily to the door of the next room, 'Room ZZZ.'
     It used to say '777', but someone's written on the plaque with a faded magic marker.
     
@@ -33,7 +32,7 @@ LIST susMarkers = POLICEMANS_KNOCK, RIDDLER, REVOLUTIONARY, INSURANCE_LIAR, QUIT
         
     MR S: "Call me MR S. And please, it's not an alias. It's simply my name."
     
-    {-police: 
+    { police: 
         MR S: "And you sir? Are you the police?"
     - else:
         MR S: "I'm sorry, but I don't believe we've met?"
@@ -90,7 +89,7 @@ Continue until the player ends it or there's nothing else to say.
         MR S: "Naturally."
         MR S: "I never travel unless I absolutely must."
         YOU: "And must you often?"
-        {-knows_insurance:
+        { knows_insurance:
             MR S: "Oh, a great deal, I'm afraid. You know the insurance business, hardly ever a day in the same place."
         -else:
             MR S: "No, hardly ever."
@@ -108,17 +107,19 @@ Continue until the player ends it or there's nothing else to say.
         MR S: "... It's that I've waited far too long, I suppose."
         MR S: "Not just here and now, but throughout my entire life. I've always waited for the perfect moment."
         MR S: "But do you know? That moment never comes."
+        He laughs.
+        MR S: "It's pathetic, isn't it? If one must regret, it should at least be something that one has done."
         YOU: "Mhm."
         YOU: "That's not really what I meant, MR S."
-        MR S: "You're the one who asked."
+        MR S: "I'm sorry to misunderstand."
     
     * (airfryer_brutality) {worst_thing_ever} {limitToThree()} [The crime, again.]
         YOU: "What's the worst thing you've ever done, MR S... to an airfryer?"
         MR S: "But, what on earth do you mean?"
         YOU: "What? You think airfryers don't have rights?"
         YOU: "That they don't deserve respect?"
-        MR S: "But of course they do!"
-        MR S: "Each made thing is a precious thing, as far as I'm concerned. Ask anyone!"
+        MR S: "Why, not at all! But of course they do!"
+        MR S: "Each made thing is a precious thing, as far as I'm concerned!"
     
     - -> loop
 
@@ -133,7 +134,7 @@ Continue until the player ends it or there's nothing else to say.
         YOU: "I don't get it."
         MR S: "That's... it's not important."
         YOU: "...You like to talk in riddles, MR S?"
-        MR S: "Never on purpose."
+        MR S: "Hardly."
         ~ sus()
         ~ susMarkers += RIDDLER
     
@@ -166,8 +167,8 @@ Continue until the player ends it or there's nothing else to say.
             YOU: "No, nevermind."
             MR S just nods.
         --MR S: "Though perhaps you will see my face one way or another before too long."
-        YOU: "You're famous?"
-        MR S: "Not yet. Going to be, I think."
+        YOU: "What's that supposed to mean?"
+        MR S: "I'm going to be famous, I think."
         ~ sus()
         ~ susMarkers += INFAMOUS
         
@@ -228,13 +229,15 @@ Continue until the player ends it or there's nothing else to say.
         YOU narrow your eyes.
         MR S: "Well, it's true."
         MR S: "No one deserves to live in such a—in a place like this."
-        YOU: "You some kind of revolutionary, MR S?"
+        MR S: "Much less one somehow worse."
+        YOU: "What, you some kind of idealist, MR S?"
+        YOU: "A revolutionary?"
         His eyes are suddenly very far away.
-        MR S: "When did trying to live in the way you want become 'revolution?'"
+        MR S: "When did trying to live in the way that we want become 'revolution?'"
     * {came_from(-> revolutionary)} [Well are you or aren't you?]
         YOU: "Well are you or aren't you?"
         MR S: "A revolutionary?"
-        MR S: "Certainly not."
+        MR S: "I wouldn't say that."
         ~ sus()
         ~ susMarkers += REVOLUTIONARY
         
@@ -255,23 +258,28 @@ Continue until the player ends it or there's nothing else to say.
         YOU: "Exactly right."
         
     * (airfryer_bru_2) {came_from(-> airfryer_brutality)} [Just stare at him.]
-        You just stare at him. He's clearly uncomfortable. As clear an admission of guilt as there ever was.
+        You just stare at him. He's clearly uncomfortable. A sure sign that you're on the right track.
         MR S: "Um."
         MR S: "Why do you ask?"
         YOU: "Someone broke one of the airfryers we keep here."
         MR S: "I say."
         YOU: "A communal one, too."
         He shakes his head sadly.
-        MR S: "A real scoundrel, surely."
-    * (confession) {came_from(-> airfryer_bru_2)} [It was you, wasn't it!]
+        MR S: "That kind of thing... it's heartbreaking, really."
+    * (airfryer_bru_3) {came_from(-> airfryer_bru_2)} [It was you, wasn't it!]
         YOU: "It was you, wasn't it!"
-        MR S: "No! I swear."
-        MR S: "And I've been here in my room for days, trying in vain to sleep!"
-        MR S: "I have been quite ill and only recently feeling better!"
-        YOU: "Do you expect me to believe that?"
+        MR S: "No! I swear!"
+        MR S: "I've been here in my room, trying in vain to sleep! And to shake this sickness of mine!"
+        MR S: "I have been quite ill for some days and only recently even well-enough to receive visitors!"
+        YOU: "I can see you're sweating. Feeling guilty, MR S?"
+        MR S: "I have a fever!"
+        MR S: "I have no plans to commit any crime until tomorrow at the very earliest!"
+    * (confession) {came_from(-> airfryer_bru_3)} [You can't expect me to believe this.]
+        YOU: "You can't expect me to believe this."
         MR S: "It is the truth!"
+        His voice grows weak, suddenly.
         MR S: "But, no. Perhaps I do not."
-        Ah-ha—a confession, if I've ever heard one.
+        Ah-ha—practically a confession, if I've ever heard one.
         ~ sus()
         ~ susMarkers += CONFESSION
 
@@ -293,19 +301,20 @@ Continue until the player ends it or there's nothing else to say.
     
 /* For when the player is ready to leave the conversation entirely. */
 = i_should_go
-    * [I should go.]
+    * [I should go. (Leave)]
         YOU: "I should go."
         MR S: "Of course."
         MR S: "Thank you for helping me to take my mind away from everything for a while."
-        { - mr_s_suspicion == 5:
-            YOU: "No, it's been my pleasure. I'm sure of it."
+        { mr_s_suspicion > 2:
+            YOU: "No, it's been my pleasure. I'm sure of it." 
             YOU: "I'll be seeing you."
             MR S: "Oh, surely not."
-            YOU: "Surely, surely, surely."
-            You leave the puzzled MR S behind and close the door after yourself.
+            YOU: "Oh, MR S..."
+            YOU: "Surely, surely, surely..."
+            You leave the puzzled MR S behind and close the door.
         - else:
-            YOU: "Thanks for your time."
-            MR S: "As I said, an absolute pleasure."
+            YOU: "Thanks for your time." test
+            MR S: "As I said, you're quite welcome."
         }
 
     -> sleepwalker_boss_call ->
@@ -318,12 +327,13 @@ Continue until the player ends it or there's nothing else to say.
         You decide to call the boss.
         YOU: "Hey boss."
         BOSS: "Have you found them yet? The criminal?"
-        { - mr_s_suspicion >= 3:
+        { mr_s_suspicion > 2:
             YOU: "Well, maybe I have boss."
             YOU: "This guy was one sick freak, let me tell you."
             YOU: "Made my skin crawl."
             BOSS: "Good, good."
             YOU: "I never thought I'd meet someone sick enough to mess up an airfryer."
+            -> sleepwalker_boss_call
         - else:
             YOU: "I don't think so, boss."
             YOU: "They were a bit strange, maybe. But not the sick freak we're looking for."
@@ -342,7 +352,7 @@ Continue until the player ends it or there's nothing else to say.
         ->->
         
 
-    - -> DONE
+    - ->->
 
 
 /* Only for when the player accuses the sleepwalker at the end of the game */
@@ -352,68 +362,61 @@ Continue until the player ends it or there's nothing else to say.
 YOU: "I know who did it, boss! I figured it out!"
 BOSS: "You did? You wonderful silly old thing, you!"
 BOSS: "This is why I keep you around!"
-YOU: "It was that shifty MR S."
+YOU: "It was that shifty MR S!"
 
 -> accusations
 = accusations
-* { susMarkers ? POLICEMANS_KNOCK} [The policeman's knock!]
-    YOU: "He said I had a policeman's knock, didn't he?! Well, I say:"
-    YOU: "How would he know that unless he was a criminal, eh?"
-    YOU: "Must have spent a lot of time getting chased around to get that familiar!"
-    BOSS: "Yes, of course!"
+    * { susMarkers ? POLICEMANS_KNOCK} [The policeman's knock!]
+        YOU: "He said I had a policeman's knock, didn't he?! Well, I say:"
+        YOU: "How would he know that unless he was a criminal, eh?"
+        YOU: "Must have spent a lot of time getting chased around to get that familiar!"
+
+    * { susMarkers ? RIDDLER} [A riddler!]
+        YOU: "He spoke in darn riddles!"
+        YOU: "He was always trying to confuse me with his words and such!"
+
+    * { susMarkers ? REVOLUTIONARY} [A revolutionary!]
+        YOU: "He was some kind of dangerous revolutionary type of guy!"
+        YOU: "Saying stuff about... well, it was all sorts of revolutionary mumbo-jumbo!"
+        YOU: "None of it ever makes any sense to anyone!"
+    
+    * { susMarkers ? INSURANCE_LIAR} [An insurance salesman!]
+        YOU: "He was an insurance salesman!"
+        YOU: "And he lied about it!"
+
+    * { susMarkers ? QUITTER} [Soon to be unemployed!]
+        YOU: "He was going to quit his job, he said! Economic treason!"
+        YOU: "He has a duty to produce objects for a set wage!"
+
+    * { susMarkers ? INFAMOUS} [Delusions of grandeur!]
+        YOU: "He was crazy, he was! He thought he was gonna become famous or something!"
+        YOU: "And what for? He's insane! He's a danger to society!"
+
+    * { susMarkers ? CONFESSION} [He practically confessed!]
+        YOU: "He practically confessed to it! Right in front of me!"
+        YOU: "He was denying it, but he would, wouldn't he? Guilty as all hell, I just know it!"
+    
+    + [He was just an all-round bad guy! (finish)]
+            YOU: "He was just an all-round bad guy!"
+            YOU: "Can we get him, boss?"
+            BOSS: "Of course. There's no other choice."
+            BOSS: "It's our duty to teach antisocial types like him a lesson before they do any more harm—"
+            BOSS: "—or break something more valuable than just an airfryer."
+            YOU: "... More valuable than an airfryer?"
+            He sighs.
+            BOSS: "Well, just try to imagine it. For the sake of argument."
+            YOU: "I dunno about that one, Boss..."
+            
+            MR S ended up paying a two hundred dollar fine for property damage. His security deposit on the hotel room was also confiscated.
+            You see his photo the next day in the paper. He took a shot at a public official from the roof of the hotel with an antique rifle, and missed him completely. He received the death penalty and was finally executed sixteen months later.
+            He never touched another airfryer.
+            -> END
+    
+    - 
+    // Shuffle
+    BOSS: "{~!Disgusting!|Unconscionable!|Positively damning!|Hear, hear!|The nerve!|Some people!|Simply unpardonable!}"
     -> accusations
 
-* { susMarkers ? RIDDLER} [A riddler!]
-    YOU: "He spoke in darn riddles!"
-    YOU: "He was always trying to confuse me with his words and such!"
-    BOSS: "Positively damning!"
-    -> accusations
-
-* { susMarkers ? REVOLUTIONARY} [A revolutionary!]
-    YOU: "He was some kind of dangerous revolutionary type of guy!"
-    YOU: "Saying stuff about... well, it was all sorts of revolutionary mumbo-jumbo!"
-    YOU: "None of it ever makes any sense to anyone!"
-    BOSS: "Hear, hear!"
-    -> accusations
-
-* { susMarkers ? INSURANCE_LIAR} [An insurance salesman!]
-    YOU: "He was an insurance salesman!"
-    YOU: "And he lied about it!"
-    BOSS: "The nerve!"
-    -> accusations
-
-* { susMarkers ? QUITTER} [Soon to be unemployed!]
-    YOU: "He was going to quit his job, he said! That's practically treason against the country!"
-    YOU: "He has a duty to produce objects for a set wage!"
-    BOSS: "Some people!"
-    -> accusations
-
-* { susMarkers ? INFAMOUS} [Delusions of grandeur!]
-    YOU: "He was crazy, he was! He thought he was gonna become famous or something!"
-    YOU: "I mean, him? He's insane! He's a danger to society!"
-    BOSS: "Disgusting!"
-    -> accusations
-
-* { susMarkers ? CONFESSION} [He confessed!]
-    YOU: "He confessed to it! Right in front of me!"
-    YOU: "He was denying it, but he would, wouldn't he? Guilty as all hell, I just know it!"
-    BOSS: "Preposterous!"
-    -> accusations
-
-+ [He was just an all-round bad guy!]
--
-YOU: "He was just an all-round bad guy!"
-YOU: "Can we get him, boss?"
-BOSS: "Of course. There's no other choice."
-BOSS: "It's our duty to get antisocial types like him off the streets before they do any more harm"
-BOSS: "—or break anything more valuable than the simple airfryer."
-YOU: "Quite right, boss."
-
-MR S ended up paying a two hundred dollar fine for property damage. His security deposit on the hotel room was confiscated.
-The next day, he shot at a visiting public official from the roof of the hotel with an antique rifle, and missed him completely. He received the death penalty and was finally executed sixteen months later.
-He never touched another airfryer.
-
--> END
 
 == function sus()
     ~ mr_s_suspicion += 1
