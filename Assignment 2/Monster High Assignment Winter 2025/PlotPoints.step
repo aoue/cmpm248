@@ -70,8 +70,7 @@ predicate PlotPoint ?event.
 # confess_love ?a ?b: This can occur when ?a has a crush on ?b but they aren’t already dating.	
 PlotPoint confess_love_pass: [CrushOn ?a ?b] [NotAny [Dating ?a ?b]]
 PlotPoint confess_love_fail: [CrushOn david jayden] [NotAny [Dating david jayden]]
-# (we should see confess_love hailey jada)
-# (proof of concept above:)
+# (^^proof of concept^^)
 
 [main]
 [randomly]
