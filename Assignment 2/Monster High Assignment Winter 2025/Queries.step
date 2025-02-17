@@ -65,8 +65,6 @@ predicate StarCrossedLovers ?charA ?charAType ?charB ?charBType.
 # respectively, where charAType and charBType are rival monster types, charA and charB share
 # a mutual attraction, and charA and charB are not dating.
 StarCrossedLovers ?charA ?charAType ?charB ?charBType:
-    [MonsterType ?charA ?charAType]
-    [MonsterType ?charB ?charBType]
     [Rivals ?charAType ?charBType]
     [MutualAttraction ?charA ?charB]
     [Not [Dating ?charA ?charB]]
