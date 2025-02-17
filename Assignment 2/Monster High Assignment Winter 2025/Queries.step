@@ -69,5 +69,4 @@ StarCrossedLovers ?charA ?charAType ?charB ?charBType:
     [MonsterType ?charB ?charBType]
     [Rivals ?charAType ?charBType]
     [MutualAttraction ?charA ?charB]
-    [MutualAttraction ?charB ?charA]
     [Not [Dating ?charA ?charB]]
