@@ -50,7 +50,7 @@ LovelessRelationship ?a ?b: [Dating ?a ?b] [NotAny [MutualAttraction ?a ?b]]
 [main]
 predicate CheatingOn ?cheater ?cheatee.
 # Cheater and cheatee are dating, but cheater is also dating someone else
-CheatingOn ?cheater ?cheatee: [Dating ?cheater ?cheatee] [Dating ?cheater ?other]
+CheatingOn ?cheater ?cheatee: [Dating ?cheater ?cheatee] [Dating ?cheater ?]
     
 
 [main]
