@@ -1,0 +1,85 @@
+# Define hotkeys for viewing plot points. 
+MenuItem "Monster High" "Show plot point menu" [ShowPlotPointMenu].
+MenuItem "Monster High" "Show six random events" [Events].
+
+# Entry point for execute 6 random events
+[main]
+Events: [InitializeFluents] [Event] [Event] [Event] [Event] [Event] [Event]
+
+# Entry point for executing a single random event
+[main]
+SingleEvent: [InitializeFluents] [Event]
+
+Event: [NewLine] [ClearContext] [SelectAndExecute] [Paragraph]
+
+# SelectAndExecute
+# Select a random plot point available in the current state and execute it. 
+SelectAndExecute:
+    [FindUnique ?e [PlotPoint ?e] ?eventList] 
+    [RandomElement ?eventList ?event]
+    [PlotPoint ?event] 
+    [ExecutePlotPoint ?event]
+[end]
+
+# ExecuteSelectedPlotPoint
+# Given a plot point, execute it, and show the plot point menu for the new state.
+ExecuteSelectedPlotPoint ?plotPoint:
+    [ClearContext]
+    [ExecutePlotPoint ?plotPoint]
+    [Paragraph]
+    [MakePlotPointButtons]
+[end]
+
+# AddPlotPointButton
+# Given a plot point, write it as a link. If the link is clicked, runs the task
+# ExecuteSelectedPlotPoint. 
+AddPlotPointButton ?plotPoint:
+    [ClearContext]
+    [SaveText [Write ?plotPoint] ?label]
+    [AddButton ?label [ExecuteSelectedPlotPoint ?plotPoint]]
+[end]
+
+# ShowPlotPointMenustep
+# Entry point for interactively selecting and executing available plot points.
+# Resets the state to the initial story state, and writes the plot point menu. 
+[main]
+ShowPlotPointMenu:
+    [EnvironmentOption discardState]
+    [EnvironmentOption retainState]
+    [InitializeFluents]
+    [MakePlotPointButtons]
+[end]
+
+# AddPlotPointButtonMenu
+# For each of the plot points applicable in the current story state, adds them to a menu.
+[main]
+MakePlotPointButtons: 
+    [ForEach [PlotPoint ?event] [AddPlotPointButton ?event]]
+[end] 
+
+###
+### What you need to write
+###
+
+[main]
+[randomly]
+predicate PlotPoint ?event.
+# ?event is a possible plot point in a Monster High episode given
+# the characters and their relationships.  Fill in methods for this,
+# below.
+# confess_love ?a ?b: This can occur when ?a has a crush on ?b but they aren’t already dating.	
+PlotPoint confess_love_pass: [CrushOn ?a ?b] [NotAny [Dating ?a ?b]]
+PlotPoint confess_love_fail: [CrushOn david jayden] [NotAny [Dating david jayden]]
+# (we should see confess_love hailey jada)
+# (proof of concept above:)
+
+[main]
+[randomly]
+task ExecutePlotPoint ?event.
+# Generate text to describe the specified plot point. Fill in methods
+# for this, below.
+
+###
+### Place your code below
+###
+

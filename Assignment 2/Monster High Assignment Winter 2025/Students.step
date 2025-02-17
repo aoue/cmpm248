@@ -1,0 +1,50 @@
+# Fill in as you like
+IsA aniyah human.
+IsA tiana vampire.
+IsA cameron werewolf.
+IsA david witch.
+IsA jayden werewolf.
+IsA hailey ghost.
+IsA jada werewolf.
+
+# Which monster types are rivals. Symmetric predicate, so adding both directions.
+# If there were lots of rival monster types, would want to handle this the same way as Dating,
+# using a helper predicate.
+# Add any additional monster types you'd like. 
+RivalMonsterTypes vampire werewolf.
+RivalMonsterTypes werewolf vampire.
+
+# Fill in as you like
+InClub aniyah gda.
+InClub jayden gda.
+InClub hailey track_team.
+InClub tiana gda.
+
+PreferredPronoun aniyah she.
+PreferredPronoun tiana she.
+PreferredPronoun hailey she.
+PreferredPronoun david he.
+PreferredPronoun cameron he.
+
+# Fluents must be initialized by asserting them in task using now. 
+# Fill in as you would like. 
+InitializeFluents:
+    [now [CrushOn cameron jayden]]
+    [now [CrushOn jayden cameron]]
+    [now [DatingHelper jayden cameron]]
+
+    [now [CrushOn tiana jayden]]
+    [now [CrushOn jayden tiana]]
+
+    [now [CrushOn hailey jada]]
+    [now [CrushOn hailey cameron]]
+    [now [DatingHelper hailey cameron]]
+
+    [now [CrushOn jayden david]]
+
+    [now [CrushOn aniyah jada]]
+    [now [DatingHelper aniyah jada]]
+
+    [now [FriendHelper aniyah jayden]]
+[end]
+

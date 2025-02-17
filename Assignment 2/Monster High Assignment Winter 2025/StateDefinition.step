@@ -1,0 +1,99 @@
+# Ideally we would want fluents to be random. But unlike predicates, Step currently
+# matches fluents deterministically (in the order they are asserted with now), even
+# if the fluent is tagged with [randomly]. We can get around this by finding all plot point solutions
+# and selecting a random one. 
+
+[randomly]
+# Crusher has a crush on crushee, not not necessarily the other way around
+fluent CrushOn ?crusher ?crushee.
+
+[randomly]
+# A and B are dating.  Use this when you want to write a fact
+# stating that A and B are dating, but use Dating when
+# you want to ask if A and B are dating.
+fluent DatingHelper ?a ?b.
+
+[main]
+# Check if A and B are dating
+predicate Dating ?a ?b.
+Dating ?a ?b: [DatingHelper ?a ?b]
+Dating ?a ?b: [DatingHelper ?b ?a]
+
+[main]
+# Using this to retract that two people are dating. RetractDating checks to see
+# which DatingHelper has been asserted and retracts it. 
+RetractDating ?a ?b: [DatingHelper ?a ?b] [now [Not [DatingHelper ?a ?b]]]
+RetractDating ?a ?b: [DatingHelper ?b ?a] [now [Not [DatingHelper ?b ?a]]]
+# Succeed if there is no DatingHelper to retract.
+RetractDating ? ?. 
+
+[randomly]
+# Character ?char knows ?knowledge. ?knowledge is represented as a tuple. For example, if we want to say that frank
+# knows that martha has a crush on frank, this would be presented by:
+# knows frank [CrushOn martha frank]
+fluent Knows ?char ?knowledge. 
+
+[randomly]
+# The ?hater is enemies with (hates) the ?hatee. 
+fluent Enemy ?hater ?hatee.
+
+[randomly]
+# ?a had a fight with ?b. Use this when you want to write a fact stating that ?a and ?b had a fight, but use 
+# HadFightWith to test, since we want HadFightWith to be symmetric.
+fluent HadFightWithHelper ?a ?b.
+
+[main]
+# Check if ?a and ?b had a fight.
+predicate HadFightWith ?a ?b.
+HadFightWith ?a ?b: [HadFightWithHelper ?a ?b]
+HadFightWith ?a ?b: [HadFightWithHelper ?b ?a]
+
+[main]
+# The same as for RetractDating, RetractHadFightWith checks to see which helper predicate
+# has been asserted and retracts it. 
+RetractHadFightWith ?a ?b: [HadFightWithHelper ?a ?b] [now [Not [HadFightWithHelper ?a ?b]]]
+RetractHadFightWith ?a ?b: [HadFightWithHelper ?b ?a] [now [Not [HadFightWithHelper ?b ?a]]]
+# Succeed if there is no HadFightWithHelper to retract.
+RetractHadFightWith ? ?. 
+
+[randomly]
+# ?a is friends with ?b. Use this when you want to write a fact stating that ?a and ?b are friends, but use
+# Friend to test, since we want Friends to be symmetric. 
+fluent FriendHelper ?a ?b.
+
+[main]
+# Check if ?a and ?b are friends. 
+predicate Friend ?a ?b.
+Friend ?a ?b: [FriendHelper ?a ?b]
+Friend ?a ?b: [FriendHelper ?b ?a] 
+
+# We should have a predicate to RetractFriend, that works similarly to RetractDating and 
+# RetractHadFightWith. But we don't need it for our assignment. 
+
+[randomly]
+[main]
+# Monsters of type ?type1 and ?type2 are rival monster types. This is a symmetric relationship,
+# so you need to assert both directions (or set it up like Dating, Friend, etc.). Since these are
+# defined statically, rather than needing to assert and retract them (fluents), we're not going to
+# bother to write the helper predictes and will just manually assert both directions. 
+predicate RivalMonsterTypes ?type1 ?type2.
+
+[randomly]
+[main]
+# ?char is confident. 
+fluent Confident ?char.
+
+[randomly]
+[main]
+# ?char1 considers ?char2 an enemy, but not necessarily the other way around. 
+fluent Enemy ?char1 ?char2.
+
+[randomly] 
+[main]
+predicate IsA ?who ?what.
+# ?who (a student) is a ?what (human, vampire, etc.)
+
+[randomly]
+[main]
+# ?who is in the club ?club
+predicate InClub ?who ?club.

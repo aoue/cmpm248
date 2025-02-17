@@ -1,0 +1,59 @@
+[randomly]
+predicate Dog ?dog.
+Dog rover.
+Dog fluffy.
+
+[randomly]
+predicate Cat ?cat.
+Cat boots.
+Cat ulysses.
+
+predicate HumanOf ?pet ?person.
+HumanOf rover jane.
+HumanOf fluffy bill.
+HumanOf boots chris.
+HumanOf ulysses jane.
+
+[predicate] 
+SameHuman ?pet1 ?pet2 ?human: [HumanOf ?pet1 ?human] [HumanOf ?pet2 ?human]
+
+Talk ?pet: [Dog ?pet] Woof!
+Talk ?pet: [Cat ?pet] Meow!
+
+[randomly]
+Verb: ate
+Verb: chased
+Verb: plotted world domination with
+
+[randomly]
+Sentence ?cat ?dog: ?cat [Verb] ?dog
+Sentence ?cat ?dog: ?dog [Verb] ?cat
+
+HumanReactionSentence ?dog ?cat:
+    # <the same human is associated with the dog and cat>
+    [SameHuman ?dog ?cat ?human]
+    [HumanOf ?dog ?human]
+    ?human, who loves both ?dog and ?cat, says "How Cute!"
+[end]
+
+HumanReactionSentence ?dog ?cat:
+	# <there are two different humans associated with the ?dog and ?cat>
+    [NotAny [SameHuman ?dog ?cat ?]]
+    [HumanOf ?dog ?human1]
+    [HumanOf ?cat ?human2]
+    ?human1 and ?human2 look on in horror at ?dog and ?cat. 
+[end] 
+
+
+Event: 
+	# <grab a dog and a cat from the predicate database using Dog and Cat queries> 
+    [Cat ?cat]
+    [Dog ?dog]
+	# <Each one talks. It’s best if you identify each pet who is speaking, e.g. ?dog says…>
+    ?dog says [Talk ?dog] [Paragraph]
+    ?cat says [Talk ?cat] [Paragraph]
+	# <Produce a pet action sentence for the ?dog and ?cat>
+    [Sentence ?cat ?dog] [Paragraph]
+	# <Produce a human reaction sentence for the ?dog and ?cat>
+    [HumanReactionSentence ?dog ?cat] [Paragraph]
+[end]

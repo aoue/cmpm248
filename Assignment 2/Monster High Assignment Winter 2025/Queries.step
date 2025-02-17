@@ -1,0 +1,64 @@
+[main]
+predicate UnrequitedLove ?crusher ?crushee.
+# Crusher has an unrequired crush on crushee.
+
+[main]
+predicate MutualAttraction ?a ?b.
+# MutualAttraction ?a ?b
+# True if ?a and ?b have crushes on each other
+MutualAttraction ?a ?b: [CrushOn ?a ?b] [CrushOn ?b ?a]
+
+[main]
+predicate Student ?who.
+# True if ?who is a student.
+# Write a rule to define Student in terms of IsA
+Student ?who: [IsA ?who ?]
+
+
+
+
+
+[main]
+predicate SameClub ?a ?b.
+# A and B are in the same club.
+# Write a rule for SameClub here
+SameClub ?a ?b: [InClub ?a ?club] [InClub ?b ?club]
+# pass: [SameClub aniyah jayden]
+# fail: [SameClub aniyah hailey]
+
+[main]
+predicate LoveTriangle ?a ?b ?c.
+# A and B both have crushes on C
+# Write a rule here
+LoveTriangle ?a ?b ?c: [CrushOn ?a ?c] [CrushOn ?b ?c]
+# Don't forget to [InitializeFluents] for testing!
+# pass: [LoveTriangle cameron tiana jayden]
+# fail: [LoveTriangle hailey jada cameron]
+
+[main]
+predicate LovelessRelationship ?a ?b.
+# A and B are dating but not actually into each other
+# Write a rule here
+# in other words, yes [Dating] but not mutual [MutualAttraction]
+LovelessRelationship ?a ?b: [Dating ?a ?b] [NotAny [MutualAttraction ?a ?b]]
+# pass: [LovelessRelationship cameron hailey]
+# fail: [LovelessRelationship jayden cameron]
+
+
+
+[main]
+predicate CheatingOn ?cheater ?cheatee.
+# Cheater and cheatee are dating, but cheater is also dating someone else
+# Write a rule here
+
+[main]
+predicate CheatingOnWith ?cheater ?cheatee ?other.
+# Cheater and cheatee are dating, but cheater is also dating other
+# Write a rule here
+
+[main]
+predicate StarCrossedLovers ?charA ?charAType ?charB ?charBType.
+# charA and charB are two different characters of monster type charAType and charBType 
+# respectively, where charAType and charBType are rival monster types, charA and charB share
+# a mutual attraction, and charA and charB are not dating.
+# Write a rule here.  
