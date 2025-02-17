@@ -67,10 +67,9 @@ predicate PlotPoint ?event.
 # ?event is a possible plot point in a Monster High episode given
 # the characters and their relationships.  Fill in methods for this,
 # below.
-# confess_love ?a ?b: This can occur when ?a has a crush on ?b but they aren’t already dating.	
-PlotPoint confess_love_pass: [CrushOn ?a ?b] [NotAny [Dating ?a ?b]]
-PlotPoint confess_love_fail: [CrushOn david jayden] [NotAny [Dating david jayden]]
-# (^^proof of concept^^)
+
+PlotPoint [confess_love ?a ?b]: [CrushOn ?a ?b] [NotAny [Dating ?a ?b]]
+
 
 [main]
 [randomly]
@@ -82,3 +81,8 @@ task ExecutePlotPoint ?event.
 ### Place your code below
 ###
 
+# ExecutePlotPoint confess_love: [PlotPoint confess_love] [now [Knows ?b [CrushOn ?a ?b]]]
+ExecutePlotPoint [confess_love ?confessor ?confessee]:
+    ?confessor confesses ?confessor/Possessive love to ?confessee.
+    [now [Knows ?confessee [CrushOn ?confessor ?confessee]]]
+    [end]
