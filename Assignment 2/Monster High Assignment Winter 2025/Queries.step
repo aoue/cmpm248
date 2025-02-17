@@ -49,25 +49,26 @@ LovelessRelationship ?a ?b: [Dating ?a ?b] [NotAny [MutualAttraction ?a ?b]]
 
 [main]
 predicate CheatingOn ?cheater ?cheatee.
-CheatingOn ?cheater ?cheatee :-
+# Cheater and cheatee are dating, but cheater is also dating someone else
     Dating ?cheater ?cheatee,
-    Dating ?cheater ?other,
-    distinct ?cheatee ?other.
+    Dating ?cheater ?other.
+    
 
 [main]
 predicate CheatingOnWith ?cheater ?cheatee ?other.
-CheatingOnWith ?cheater ?cheatee ?other :-
+# Cheater and cheatee are dating, but cheater is also dating other
     Dating ?cheater ?cheatee,
-    Dating ?cheater ?other,
-    distinct ?cheatee ?other.
+    Dating ?cheater ?other.
+    
 
 [main]
 predicate StarCrossedLovers ?charA ?charAType ?charB ?charBType.
-StarCrossedLovers ?charA ?charAType ?charB ?charBType :-
+# charA and charB are two different characters of monster type charAType and charBType
+# respectively, where charAType and charBType are rival monster types, charA and charB share
+# a mutual attraction, and charA and charB are not dating.
     MonsterType ?charA ?charAType,
     MonsterType ?charB ?charBType,
     Rivals ?charAType ?charBType,
     CrushOn ?charA ?charB,
     CrushOn ?charB ?charA,
-    not(Dating ?charA ?charB),
-    distinct ?charA ?charB.
+    Not(Dating ?charA ?charB),
