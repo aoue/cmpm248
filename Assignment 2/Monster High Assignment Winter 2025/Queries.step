@@ -1,6 +1,7 @@
 [main]
 predicate UnrequitedLove ?crusher ?crushee.
 # Crusher has an unrequired crush on crushee.
+UnrequitedLove ?crusher ?crushee: [CrushOn ?crusher ?crushee] [Not [CrushOn ?crushee ?crusher]]
 
 [main]
 predicate MutualAttraction ?a ?b.
