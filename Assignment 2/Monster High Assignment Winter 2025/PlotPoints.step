@@ -110,7 +110,31 @@ PlotPoint [fight ?attacker ?defender [triangle ?attacker ?defender ?loveInterest
     [Not [= ?attacker ?defender]]
 [end]
 
+PlotPoint [fight ?cheatee ?cheater [cheating ?cheater ?cheatee ?other]]:
+    [CheatingOnWith ?cheater ?cheatee ?other]
+    [Not [= ?cheatee ?cheater]]
+    [Not [= ?cheatee ?other]]
+[end]
+# Pass: [fight hailey cameron [cheating cameron hailey jayden]]
+# Pass: [fight jayden cameron [cheating cameron jayden hailey]]
 
+# means that ?cheatee fights with ?other about ?cheater cheating on ?cheatee with ?
+# other. This can occur when ?cheater is cheating on ?cheatee with ?other
+PlotPoint [fight ?cheatee ?other [cheating ?cheater ?cheatee ?other]]:
+    [CheatingOnWith ?cheater ?cheatee ?other]
+    [Not [= ?cheatee ?cheater]]
+    [Not [= ?cheatee ?other]]
+[end]
+# Pass: [fight hailey jayden [cheating cameron hailey jayden]]
+# Pass: [fight jayden hailey [cheating cameron jayden hailey]]
+
+# means that ?char1 breaks up with ?char2. This can occur when ?char1 and ?char2 are
+# dating and ?char1 had a fight with ?char2
+PlotPoint [breakup ?char1 ?char2]:
+    [Dating ?char1 ?char2]
+    [HadFightWith ?char1 ?char2]
+[end]
+# Pass: [breakup hailey cameron] after [fight hailey cameron [cheating cameron hailey jayden]]
 
 PlotPoint [smoldering_look ?a ?b ?club]:
     [MutualAttraction ?a ?b]
@@ -168,7 +192,25 @@ ExecutePlotPoint [fight ?attacker ?defender [triangle ?attacker ?defender ?loveI
     [now [HadFightWithHelper ?attacker ?defender]]
 [end]
 
+ExecutePlotPoint [fight ?cheatee ?cheater [cheating ?cheater ?cheatee ?other]]:
+    ?cheatee finds out ?cheater has been cheating on ?cheatee/Possessive with ?other, and the couple have a horrible fight.
+    [now [HadFightWithHelper ?cheatee ?cheater]]
+[end]
 
+ExecutePlotPoint [fight ?cheatee ?other [cheating ?cheater ?cheatee ?other]]:
+    ?cheatee and ?other fight over ?cheater for some reason, even though ?cheater/Mention is a cheating scoundrel.
+    [now [HadFightWithHelper ?cheatee ?other]]
+[end]
+
+# Since the two characters aren’t dating anymore, now they haven’t had a fight (the fight is no
+# longer relevant after the breakup), and neither has a crush on the other.
+ExecutePlotPoint [breakup ?char1 ?char2]:
+    ?char1 and ?char2 finally break up. They don't like each other anymore.
+    [now [RetractHadFightWith ?char1 ?char2]]
+    [now [RetractDating ?char1 ?char2]]
+    [now [Not [CrushOn ?char1 ?char2]]]
+    [now [Not [CrushOn ?char2 ?char1]]]
+[end]
 
 ExecutePlotPoint [smoldering_look ?a ?b ?club]:
     ?a sends a smoldering look to ?b while they are both at ?club.

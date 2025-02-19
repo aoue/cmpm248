@@ -15,10 +15,6 @@ predicate Student ?who.
 # Write a rule to define Student in terms of IsA
 Student ?who: [IsA ?who ?]
 
-
-
-
-
 [main]
 predicate SameClub ?a ?b.
 # A and B are in the same club.
@@ -44,8 +40,6 @@ predicate LovelessRelationship ?a ?b.
 LovelessRelationship ?a ?b: [Dating ?a ?b] [NotAny [MutualAttraction ?a ?b]]
 # pass: [LovelessRelationship cameron hailey]
 # fail: [LovelessRelationship jayden cameron]
-
-
 
 [main]
 predicate CheatingOn ?cheater ?cheatee.
