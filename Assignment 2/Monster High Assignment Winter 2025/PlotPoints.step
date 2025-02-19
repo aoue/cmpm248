@@ -110,6 +110,23 @@ PlotPoint [fight ?attacker ?defender [triangle ?attacker ?defender ?loveInterest
     [Not [= ?attacker ?defender]]
 [end]
 
+
+
+PlotPoint [smoldering_look ?a ?b ?club]:
+    [MutualAttraction ?a ?b]
+    [SameClub ?a ?b]
+[end]
+
+Plotpoint [star_crossed_lovers ?a ?atype ?b ?btype]:
+    [StarCrossedLovers ?charA ?charAType ?charB ?charBType]
+[end]
+
+Plotpoint [support_from_friend ?supporter ?supportee [star_crossed_lovers ?supportee ?supporteeType ?crush ?crushType]]:
+    [StarCrossedLovers ?supportee ?crush]
+    [Friend ?supporter ?suportee]
+[end]
+
+
 [main]
 [randomly]
 task ExecutePlotPoint ?event.
@@ -149,4 +166,19 @@ ExecutePlotPoint [romantic_rejection ?rejector ?rejected]:
 ExecutePlotPoint [fight ?attacker ?defender [triangle ?attacker ?defender ?loveInterest]]:
     ?attacker has a fight with ?defender about the fact that they both have a crush on ?loveInterest.
     [now [HadFightWithHelper ?attacker ?defender]]
+[end]
+
+
+
+ExecutePlotPoint [smoldering_look ?a ?b ?club]:
+    ?a sends a smoldering look to ?b while they are both at ?club.
+[end]
+
+ExecutePlotPoint [star_crossed_lovers ?a ?atype ?b ?btype]:
+    ?a and ?b are in love! Yet, ?a is a ?atype and ?b is a ?btype. Hence, they are star crossed lovers! Oh, the tragedy!
+[end]
+
+ExecutePlotPoint [support_from_friend ?supporter ?supportee [star_crossed_lovers ?supportee ?supporteeType ?crush ?crushType]]:
+    ?supporter supports ?suportee in their quest for love with ?crush, despite them being star crossed lovers.
+    [now [Confident ?supportee]]
 [end]
