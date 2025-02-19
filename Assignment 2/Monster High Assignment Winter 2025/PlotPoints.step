@@ -70,6 +70,45 @@ predicate PlotPoint ?event.
 
 PlotPoint [confess_love ?a ?b]: [CrushOn ?a ?b] [NotAny [Dating ?a ?b]]
 
+# means ?a starts dating ?b. There are 2 different conditions in which ?a can start dating ?b:
+# 1)    ?a knows that ?b has a crush on them, there's mutual attraction, they are not currently dating
+#       each other, and they are not star crossed lovers
+# 2)    Same as above, except that they are star crossed lovers, and ?a is confident
+# Debug Note: Check for [IsA ?a ?typeA] to solve for character type in StarCrossedLovers, otherwise it
+# will automatically substitute vampire werewolf even if it doesn't match the character
+PlotPoint [start_dating ?a ?b]:
+    [Knows ?a [CrushOn ?b ?a]] 
+    [MutualAttraction ?a ?b] 
+    [Not [Dating ?a ?b]]
+    [IsA ?a ?typeA]
+    [IsA ?b ?typeB]
+    [Not [StarCrossedLovers ?a ?typeA ?b ?typeB]]
+[end]
+PlotPoint [start_dating ?a ?b]:
+    [Knows ?a [CrushOn ?b ?a]] 
+    [MutualAttraction ?a ?b] 
+    [Not [Dating ?a ?b]]
+    [IsA ?a ?typeA]
+    [IsA ?b ?typeB]
+    [StarCrossedLovers ?a ?typeA ?b ?typeB]
+    [Confident ?a]
+[end]
+
+# means ?rejector romantically rejects ?rejected. This can occur when the ?rejector
+# knows that ?rejected has a crush on them, and the love is unrequited
+# (?rejected has UnrequitedLove with ?rejector)
+PlotPoint [romantic_rejection ?rejector ?rejected]:
+    [Knows ?rejector [CrushOn ?rejected ?rejector]]
+    [UnrequitedLove ?rejected ?rejector]
+[end]
+
+# means ?attacker has a fight with ?defender about the fact that ?attacker and ?defender
+# have the same ?loveInterest. This can occur when ?attacker and ?defender
+# are in a love triangle with ?loveInterest
+PlotPoint [fight ?attacker ?defender [triangle ?attacker ?defender ?loveInterest]]:
+    [LoveTriangle ?attacker ?defender ?loveInterest]
+    [Not [= ?attacker ?defender]]
+[end]
 
 [main]
 [randomly]
@@ -85,4 +124,29 @@ task ExecutePlotPoint ?event.
 ExecutePlotPoint [confess_love ?confessor ?confessee]:
     ?confessor confesses ?confessor/Possessive love to ?confessee.
     [now [Knows ?confessee [CrushOn ?confessor ?confessee]]]
-    [end]
+[end]
+
+# Now ?a and ?b are	dating, and ?a doesn’t know anymore	about ?b’s crush on	?a (now	that
+# they’re dating, they are beyond worrying about crushes).	
+ExecutePlotPoint [start_dating ?a ?b]: 
+    ?a and ?b start dating.
+    [now [DatingHelper ?a ?b]]
+    [now [Not [Knows ?a [CrushOn ?b ?a]]]]
+[end]
+
+# Now ?rejector doesn't know anymore that ?rejected has a crush on them, ?rejected no
+# longer has a crush on ?rejector, and ?rejected considers ?rejector an enemy
+ExecutePlotPoint [romantic_rejection ?rejector ?rejected]:
+    ?rejector rejected the confession of ?rejected. ?rejected now considers ?rejector/Print an enemy.
+    [now [Not [Knows ?rejector [CrushOn ?rejected ?rejector]]]]
+    [now [Not [CrushOn ?rejected ?rejector]]]
+    [now [Enemy ?rejected ?rejector]]
+[end]
+
+# means ?attacker has a fight with ?defender about the fact that ?attacker and ?defender
+# have the same ?loveInterest. This can occur when ?attacker and ?defender
+# are in a love triangle with ?loveInterest
+ExecutePlotPoint [fight ?attacker ?defender [triangle ?attacker ?defender ?loveInterest]]:
+    ?attacker has a fight with ?defender about the fact that they both have a crush on ?loveInterest.
+    [now [HadFightWithHelper ?attacker ?defender]]
+[end]
