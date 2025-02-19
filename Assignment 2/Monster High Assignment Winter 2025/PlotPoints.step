@@ -68,7 +68,10 @@ predicate PlotPoint ?event.
 # the characters and their relationships.  Fill in methods for this,
 # below.
 
-PlotPoint [confess_love ?a ?b]: [CrushOn ?a ?b] [NotAny [Dating ?a ?b]]
+PlotPoint [confess_love ?a ?b]: 
+    [CrushOn ?a ?b] 
+    [NotAny [Dating ?a ?b]]
+[end]
 
 # means ?a starts dating ?b. There are 2 different conditions in which ?a can start dating ?b:
 # 1)    ?a knows that ?b has a crush on them, there's mutual attraction, they are not currently dating
@@ -140,14 +143,18 @@ PlotPoint [smoldering_look ?a ?b ?club]:
     [MutualAttraction ?a ?b]
     [SameClub ?a ?b]
 [end]
+# Pass: [smoldering look tiana jayden gda]
 
-Plotpoint [star_crossed_lovers ?a ?atype ?b ?btype]:
+PlotPoint [star_crossed_lovers ?charA ?charAType ?charB ?charBType]:
     [StarCrossedLovers ?charA ?charAType ?charB ?charBType]
 [end]
+# Pass: [star_crossed_lovers tiana vampire jayden werewolf]
 
-Plotpoint [support_from_friend ?supporter ?supportee [star_crossed_lovers ?supportee ?supporteeType ?crush ?crushType]]:
-    [StarCrossedLovers ?supportee ?crush]
+PlotPoint [support_from_friend ?supporter ?supportee [star_crossed_lovers ?supportee ?supporteeType ?crush ?crushType]]:
+    [StarCrossedLovers ?supportee ?supporteeType ?crush ?crushType]
     [Friend ?supporter ?suportee]
+    [Not [= ?supporter ?supportee]]
+    [Not [= ?supporter ?crush]]
 [end]
 
 
@@ -161,7 +168,6 @@ task ExecutePlotPoint ?event.
 ### Place your code below
 ###
 
-# ExecutePlotPoint confess_love: [PlotPoint confess_love] [now [Knows ?b [CrushOn ?a ?b]]]
 ExecutePlotPoint [confess_love ?confessor ?confessee]:
     ?confessor confesses ?confessor/Possessive love to ?confessee.
     [now [Knows ?confessee [CrushOn ?confessor ?confessee]]]
