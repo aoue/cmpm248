@@ -141,7 +141,7 @@ PlotPoint [breakup ?char1 ?char2]:
 
 PlotPoint [smoldering_look ?a ?b ?club]:
     [MutualAttraction ?a ?b]
-    [SameClub ?a ?b]
+    [InClub ?a ?club] [InClub ?b ?club]
 [end]
 # Pass: [smoldering look tiana jayden gda]
 
@@ -227,6 +227,6 @@ ExecutePlotPoint [star_crossed_lovers ?a ?atype ?b ?btype]:
 [end]
 
 ExecutePlotPoint [support_from_friend ?supporter ?supportee [star_crossed_lovers ?supportee ?supporteeType ?crush ?crushType]]:
-    ?supporter supports ?suportee in their quest for love with ?crush, despite them being star crossed lovers.
+    ?supporter supports ?supportee in their quest for love with ?crush, despite them being star crossed lovers.
     [now [Confident ?supportee]]
 [end]
