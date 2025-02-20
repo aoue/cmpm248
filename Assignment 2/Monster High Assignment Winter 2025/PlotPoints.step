@@ -152,7 +152,7 @@ PlotPoint [star_crossed_lovers ?charA ?charAType ?charB ?charBType]:
 
 PlotPoint [support_from_friend ?supporter ?supportee [star_crossed_lovers ?supportee ?supporteeType ?crush ?crushType]]:
     [StarCrossedLovers ?supportee ?supporteeType ?crush ?crushType]
-    [Friend ?supporter ?suportee]
+    [Friend ?supporter ?supportee]
     [Not [= ?supporter ?supportee]]
     [Not [= ?supporter ?crush]]
 [end]
