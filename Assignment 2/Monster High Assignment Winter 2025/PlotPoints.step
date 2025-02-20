@@ -169,6 +169,15 @@ PlotPoint [envy ?envier ?partner ?crush]:
 # Fail: [envy hailey jada cameron]
 # Fail: [envy hailey cameron tiana]
 
+
+
+PlotPoint [flirt ?a ?b ?club]:
+    [Confident ?a]
+    [CrushOn ?a ?b]
+    [Not [Dating ?a ?b]]
+    [InClub ?a ?club] [InClub ?b ?club]
+[end]
+
 [main]
 [randomly]
 task ExecutePlotPoint ?event.
@@ -246,4 +255,10 @@ ExecutePlotPoint [support_from_friend ?supporter ?supportee [star_crossed_lovers
 # and when char1 is dating anyone, and when envier has a crush on char1
 ExecutePlotPoint [envy ?envier ?partner ?crush]:
     ?envier sighs deeply. ?envier [Is] so totally over ?partner and so totally into ?crush.
+[end]
+
+ExecutePlotPoint [flirt ?a ?b ?club]:
+    ?a uses ?a/Possessive confidence to flirt with ?b while they are both in ?club.
+    [now [Knows ?b [CrushOn ?a ?b]]]
+    [now [MutualAttraction ?a ?b]]
 [end]
