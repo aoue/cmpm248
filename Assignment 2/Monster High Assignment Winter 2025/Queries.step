@@ -37,7 +37,7 @@ predicate LovelessRelationship ?a ?b.
 # A and B are dating but not actually into each other
 # Write a rule here
 # in other words, yes [Dating] but not mutual [MutualAttraction]
-LovelessRelationship ?a ?b: [Dating ?a ?b] [NotAny [MutualAttraction ?a ?b]]
+LovelessRelationship ?a ?b: [Dating ?a ?b] [Not [MutualAttraction ?a ?b]]
 # pass: [LovelessRelationship cameron hailey]
 # fail: [LovelessRelationship jayden cameron]
 

@@ -157,6 +157,17 @@ PlotPoint [support_from_friend ?supporter ?supportee [star_crossed_lovers ?suppo
     [Not [= ?supporter ?crush]]
 [end]
 
+# envy: can occur when envier is dating partner but does not have a crush on them,
+# and when char1 is dating anyone, and when envier has a crush on char1 but is not dating them
+PlotPoint [envy ?envier ?partner ?crush]:
+    [Dating ?envier ?partner]
+    [CrushOn ?envier ?crush]
+    [Not [CrushOn ?envier ?partner]]
+    [Not [Dating ?envier ?crush]]
+[end]
+# Pass: [envy hailey cameron jada]
+# Fail: [envy hailey jada cameron]
+# Fail: [envy hailey cameron tiana]
 
 [main]
 [randomly]
@@ -204,14 +215,14 @@ ExecutePlotPoint [fight ?cheatee ?cheater [cheating ?cheater ?cheatee ?other]]:
 [end]
 
 ExecutePlotPoint [fight ?cheatee ?other [cheating ?cheater ?cheatee ?other]]:
-    ?cheatee and ?other fight over ?cheater for some reason, even though ?cheater/Mention is a cheating scoundrel.
+    ?cheatee and ?other fight over ?cheater for some reason, even though ?cheater/Mention [Is] a cheating scoundrel.
     [now [HadFightWithHelper ?cheatee ?other]]
 [end]
 
 # Since the two characters aren’t dating anymore, now they haven’t had a fight (the fight is no
 # longer relevant after the breakup), and neither has a crush on the other.
 ExecutePlotPoint [breakup ?char1 ?char2]:
-    ?char1 and ?char2 finally break up. They don't like each other anymore.
+    ?char1 and ?char2 finally break up. They just don't like each other anymore.
     [now [RetractHadFightWith ?char1 ?char2]]
     [now [RetractDating ?char1 ?char2]]
     [now [Not [CrushOn ?char1 ?char2]]]
@@ -229,4 +240,10 @@ ExecutePlotPoint [star_crossed_lovers ?a ?atype ?b ?btype]:
 ExecutePlotPoint [support_from_friend ?supporter ?supportee [star_crossed_lovers ?supportee ?supporteeType ?crush ?crushType]]:
     ?supporter supports ?supportee in their quest for love with ?crush, despite them being star crossed lovers.
     [now [Confident ?supportee]]
+[end]
+
+# envy: can occur when envier is in a loveless relationship with partner
+# and when char1 is dating anyone, and when envier has a crush on char1
+ExecutePlotPoint [envy ?envier ?partner ?crush]:
+    ?envier sighs deeply. ?envier [Is] so totally over ?partner and so totally into ?crush.
 [end]
