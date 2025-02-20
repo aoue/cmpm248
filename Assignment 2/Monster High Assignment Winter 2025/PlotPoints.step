@@ -199,7 +199,7 @@ ExecutePlotPoint [fight ?attacker ?defender [triangle ?attacker ?defender ?loveI
 [end]
 
 ExecutePlotPoint [fight ?cheatee ?cheater [cheating ?cheater ?cheatee ?other]]:
-    ?cheatee finds out ?cheater has been cheating on ?cheatee/Possessive with ?other, and the couple have a horrible fight.
+    ?cheatee finds out ?cheater has been cheating on ?cheatee/Obj with ?other, and the couple have a horrible fight.
     [now [HadFightWithHelper ?cheatee ?cheater]]
 [end]
 
