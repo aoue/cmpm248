@@ -29,8 +29,6 @@ PreferredPronoun cameron he.
 # Fluents must be initialized by asserting them in task using now. 
 # Fill in as you would like. 
 
-# NOTE: added [Confident tiana] to test start_dating for star-crossed lovers
-#       added [CrushOn david jayden] to test start_dating for not star-crossed lovers
 InitializeFluents:
     [now [CrushOn cameron jayden]]
     [now [CrushOn jayden cameron]]
@@ -39,14 +37,11 @@ InitializeFluents:
     [now [CrushOn tiana jayden]]
     [now [CrushOn jayden tiana]]
 
-    [now [Confident tiana]]
-
     [now [CrushOn hailey jada]]
     [now [CrushOn hailey cameron]]
     [now [DatingHelper hailey cameron]]
 
     [now [CrushOn jayden david]]
-    [now [CrushOn david jayden]]
 
     [now [CrushOn aniyah jada]]
     [now [DatingHelper aniyah jada]]
