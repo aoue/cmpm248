@@ -247,7 +247,7 @@ ExecutePlotPoint [star_crossed_lovers ?a ?atype ?b ?btype]:
 [end]
 
 ExecutePlotPoint [support_from_friend ?supporter ?supportee [star_crossed_lovers ?supportee ?supporteeType ?crush ?crushType]]:
-    ?supporter supports ?supportee in their quest for love with ?crush, despite them being star crossed lovers.
+    ?supporter supports ?supportee in their quest for love with ?crush, despite ?supportee/Possessive being a ?supporteeType and ?crush/Possessive being a ?crushType. A classic tale of star crossed lovers!
     [now [Confident ?supportee]]
 [end]
 
