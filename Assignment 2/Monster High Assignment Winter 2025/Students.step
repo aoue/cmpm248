@@ -29,6 +29,8 @@ PreferredPronoun cameron he.
 # Fluents must be initialized by asserting them in task using now. 
 # Fill in as you would like. 
 
+# NOTE: [now [CrushOn jada hailey]] added to show PlotPoint [envy ?envier ?partner ?crush]
+# NOTE: [now [CrushOn hailey david]] added to show PlotPoint [haunt ?a ?b] after ?a is rejected by ?b
 InitializeFluents:
     [now [CrushOn cameron jayden]]
     [now [CrushOn jayden cameron]]
@@ -49,5 +51,6 @@ InitializeFluents:
     [now [FriendHelper aniyah jayden]]
 
     [now [CrushOn jada hailey]]
+    [now [CrushOn hailey david]]
 [end]
 

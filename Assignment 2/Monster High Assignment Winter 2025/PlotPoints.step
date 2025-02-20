@@ -170,12 +170,19 @@ PlotPoint [envy ?envier ?partner ?crush]:
 # Fail: [envy hailey cameron tiana]
 
 
-
+# means ?a flirts with ?b when they are in the same club. This happens when ?a is confident and
+# has a crush on ?b. ?a and ?b are also not dating.
 PlotPoint [flirt ?a ?b ?club]:
     [Confident ?a]
     [CrushOn ?a ?b]
     [Not [Dating ?a ?b]]
     [InClub ?a ?club] [InClub ?b ?club]
+[end]
+
+# means ?a haunts ?b if ?a is a ghost and ?a considers ?b an enemy.
+PlotPoint [haunt ?a ?b]:
+    [IsA ?a ghost]
+    [Enemy ?a ?b]
 [end]
 
 [main]
@@ -204,7 +211,7 @@ ExecutePlotPoint [start_dating ?a ?b]:
 # Now ?rejector doesn't know anymore that ?rejected has a crush on them, ?rejected no
 # longer has a crush on ?rejector, and ?rejected considers ?rejector an enemy
 ExecutePlotPoint [romantic_rejection ?rejector ?rejected]:
-    ?rejector rejected the confession of ?rejected. ?rejected now considers ?rejector/Print an enemy.
+    ?rejector rejected the confession of ?rejected. ?rejected/Print now considers ?rejector/Print an enemy.
     [now [Not [Knows ?rejector [CrushOn ?rejected ?rejector]]]]
     [now [Not [CrushOn ?rejected ?rejector]]]
     [now [Enemy ?rejected ?rejector]]
@@ -257,8 +264,14 @@ ExecutePlotPoint [envy ?envier ?partner ?crush]:
     ?envier sighs deeply. ?envier [Is] so totally over ?partner and so totally into ?crush.
 [end]
 
+# Since they flirt, now ?b knows about ?a's crush on ?b. They can now be considered as mutually attracted.
 ExecutePlotPoint [flirt ?a ?b ?club]:
     ?a uses ?a/Possessive confidence to flirt with ?b while they are both in ?club.
     [now [Knows ?b [CrushOn ?a ?b]]]
     [now [MutualAttraction ?a ?b]]
+[end]
+
+# Now that ?a is haunting ?b, ?b feels cold and has trouble sleeping.
+ExecutePlotPoint [haunt ?a ?b]:
+    ?a haunts ?b. ?b/Print feels the chills all the time and has trouble sleeping.
 [end]
