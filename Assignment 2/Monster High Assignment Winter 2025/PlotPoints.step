@@ -239,8 +239,13 @@ ExecutePlotPoint [fight ?cheatee ?other [cheating ?cheater ?cheatee ?other]]:
 # longer relevant after the breakup), and neither has a crush on the other.
 ExecutePlotPoint [breakup ?char1 ?char2]:
     ?char1 and ?char2 finally break up. They just don't like each other anymore.
-    [now [RetractHadFightWith ?char1 ?char2]]
-    [now [RetractDating ?char1 ?char2]]
+
+# [now [RetractHadFightWith ?char1 ?char2]]
+# [now [RetractDating ?char1 ?char2]]
+    [now [Not [Dating ?char1 ?char2]]]
+    [now [Not [Dating ?char2 ?char1]]]
+    [now [Not [HadFightWith ?char1 ?char2]]]
+    [now [Not [HadFightWith ?char2 ?char1]]]
     [now [Not [CrushOn ?char1 ?char2]]]
     [now [Not [CrushOn ?char2 ?char1]]]
 [end]
